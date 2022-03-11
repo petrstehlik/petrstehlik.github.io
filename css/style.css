@@ -4,6 +4,7 @@
 
 @import url('https://fonts.googleapis.com/css?family=Barlow:100,200,300,400,500,600,700');
 @import url('https://fonts.googleapis.com/css?family=Marck+Script');
+@import url('https://fonts.googleapis.com/css2?family=Licorice&display=swap');
 
 /*------------------------------------------------------------------
     IMPORT FILES
@@ -150,7 +151,7 @@ button:focus{
 
 
 /*------------------------------------------------------------------
-    LOADER 
+    LOADER
 -------------------------------------------------------------------*/
 
 #preloader {
@@ -263,7 +264,7 @@ button:focus{
     clip: rect(0, 300px, 100px, 0);
     opacity:0;
  }
-  
+
 }
 
 .pulse {
@@ -350,6 +351,12 @@ button:focus{
 	background: #dd666c;
 }
 
+.top-image {
+	height: 100vh;
+	background: url(../images/background-top.jpg) center center;
+	background-size: cover;
+}
+
 
 /*------------------------------------------------------------------
     Banner
@@ -389,8 +396,8 @@ button:focus{
 }
 
 .lbox-details h1{
-	font-size: 68px;
-	font-family: 'Marck Script', cursive;
+	font-size: 90px;
+	font-family: 'Licorice', cursive;
 	color: #ffffff;
 	position: relative;
 	z-index: 3;
@@ -405,12 +412,15 @@ button:focus{
 .lbox-details p{
 	color: #ffffff;
 	position: relative;
+	font-size: 40px;
+	font-weight: 400;
 	z-index: 3;
 }
-.lbox-details p strong{
-	color: #dd666c;
+.lbox-details strong{
+	color: #d3ba34;
 	font-size: 40px;
-	font-family: 'Marck Script', cursive;
+	font-weight: 400;
+	/* font-family: 'Licorice', cursive; */
 }
 .lbox-details a.btn{
 	background: #63c7bd;
@@ -440,7 +450,7 @@ button:focus{
 }
 .title-box h2{
 	font-size: 60px;
-	font-family: 'Marck Script', cursive;
+	font-family: 'L', cursive;
 	color: #222222;
 }
 .title-box h2 span{
@@ -449,7 +459,7 @@ button:focus{
 }
 .about-main-info h2{
 	font-size: 40px;
-	font-family: 'Marck Script', cursive;
+	font-family: 'Licorice', cursive;
 }
 .about-main-info h2 span{
 	color: #dd666c;
@@ -531,7 +541,7 @@ button:focus{
 }
 
 .display-font{
-	font-family: 'Marck Script', cursive;
+	font-family: 'Licorice', cursive;
 	font-size: 30px;
 	color: #222222;
 }
@@ -548,8 +558,9 @@ button:focus{
 }
 
 .main-timeline-box .time-line-date-content .mbr-timeline-date{
-	background: #dd666c;
-	color: #ffffff;
+	background: #550000;
+	font-family: 'Marck Script', cursive;
+	color: #fff;
 }
 .main-timeline-box .reverse .time-line-date-content .mbr-timeline-date{
 	background: #63c7bd;
