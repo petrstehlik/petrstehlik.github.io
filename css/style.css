@@ -557,12 +557,13 @@ button:focus{
 }
 
 .main-timeline-box .time-line-date-content .mbr-timeline-date{
-	background: #550000;
+	/*background: #550000;*/
+	background: linear-gradient(to right, #550000, #750000);
 	font-family: 'Marck Script', cursive;
 	color: #fff;
 }
 .main-timeline-box .reverse .time-line-date-content .mbr-timeline-date{
-	background: #63c7bd;
+	background: linear-gradient(to right, #BF953F, #AA771C);
 	color: #ffffff;
 }
 
