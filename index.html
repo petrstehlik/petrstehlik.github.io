@@ -1,417 +1,563 @@
-<!DOCTYPE html>
-<html lang="en"><!-- Basic -->
-<head>
-	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Petr.dev</title>
+    <meta name="description" content="Experience Flying Toasters." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./img/favicon.png" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .toaster {
+        position: absolute;
+        width: 64px;
+        height: 64px;
+        background-image: url("./img/toaster-sprite.gif");
+      }
+      .toast {
+        position: absolute;
+        width: 64px;
+        height: 64px;
+        background-image: url("./img/toast1.gif");
+      }
 
-    <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+      /**
+     * Toaster Animations
+     *
+     * There are several kinds of toaster animations, marked as t1, t2, & t3.
+     *
+     * T1 is fastest speed
+     * T2 is mid speed & flaps out of sequence with T1
+     * T3 is the common speed
+     * T4 is a delayed batch going at the fastest speed
+     * T5, T6, T7, T8, & T9 are a delayed batch of toasters going at the common speed
+     */
+      .t1 {
+        -webkit-animation:
+          flap 0.2s steps(4) infinite alternate,
+          fly 10s linear infinite;
+        -moz-animation:
+          flap 0.2s steps(4) infinite alternate,
+          fly 10s linear infinite;
+        -ms-animation:
+          flap 0.2s steps(4) infinite alternate,
+          fly 10s linear infinite;
+        -o-animation:
+          flap 0.2s steps(4) infinite alternate,
+          fly 10s linear infinite;
+        animation:
+          flap 0.2s steps(4) infinite alternate,
+          fly 10s linear infinite;
+      }
+      .t2 {
+        -webkit-animation:
+          flap 0.2s steps(4) infinite alternate-reverse,
+          fly 16s linear infinite;
+        -moz-animation:
+          flap 0.2s steps(4) infinite alternate-reverse,
+          fly 16s linear infinite;
+        -ms-animation:
+          flap 0.2s steps(4) infinite alternate-reverse,
+          fly 16s linear infinite;
+        -o-animation:
+          flap 0.2s steps(4) infinite alternate-reverse,
+          fly 16s linear infinite;
+        animation:
+          flap 0.2s steps(4) infinite alternate-reverse,
+          fly 16s linear infinite;
+      }
+      .t3 {
+        -webkit-animation:
+          flap 0.2s steps(4) infinite alternate,
+          fly 24s linear infinite;
+        -moz-animation:
+          flap 0.2s steps(4) infinite alternate,
+          fly 24s linear infinite;
+        -ms-animation:
+          flap 0.2s steps(4) infinite alternate,
+          fly 24s linear infinite;
+        -o-animation:
+          flap 0.2s steps(4) infinite alternate,
+          fly 24s linear infinite;
+        animation:
+          flap 0.2s steps(4) infinite alternate,
+          fly 24s linear infinite;
+      }
+      .t4 {
+        -webkit-animation:
+          flap 0.2s steps(4) infinite alternate,
+          fly 10s 5s linear infinite;
+        -moz-animation:
+          flap 0.2s steps(4) infinite alternate,
+          fly 10s 5s linear infinite;
+        -ms-animation:
+          flap 0.2s steps(4) infinite alternate,
+          fly 10s 5s linear infinite;
+        -o-animation:
+          flap 0.2s steps(4) infinite alternate,
+          fly 10s 5s linear infinite;
+        animation:
+          flap 0.2s steps(4) infinite alternate,
+          fly 10s 5s linear infinite;
+      }
+      .t5 {
+        -webkit-animation:
+          flap 0.2s steps(4) infinite alternate-reverse,
+          fly 24s 4s linear infinite;
+        -moz-animation:
+          flap 0.2s steps(4) infinite alternate-reverse,
+          fly 24s 4s linear infinite;
+        -ms-animation:
+          flap 0.2s steps(4) infinite alternate-reverse,
+          fly 24s 4s linear infinite;
+        -o-animation:
+          flap 0.2s steps(4) infinite alternate-reverse,
+          fly 24s 4s linear infinite;
+        animation:
+          flap 0.2s steps(4) infinite alternate-reverse,
+          fly 24s 4s linear infinite;
+      }
+      .t6 {
+        -webkit-animation:
+          flap 0.2s steps(4) infinite alternate,
+          fly 24s 8s linear infinite;
+        -moz-animation:
+          flap 0.2s steps(4) infinite alternate,
+          fly 24s 8s linear infinite;
+        -ms-animation:
+          flap 0.2s steps(4) infinite alternate,
+          fly 24s 8s linear infinite;
+        -o-animation:
+          flap 0.2s steps(4) infinite alternate,
+          fly 24s 8s linear infinite;
+        animation:
+          flap 0.2s steps(4) infinite alternate,
+          fly 24s 8s linear infinite;
+      }
+      .t7 {
+        -webkit-animation:
+          flap 0.2s steps(4) infinite alternate-reverse,
+          fly 24s 12s linear infinite;
+        -moz-animation:
+          flap 0.2s steps(4) infinite alternate-reverse,
+          fly 24s 12s linear infinite;
+        -ms-animation:
+          flap 0.2s steps(4) infinite alternate-reverse,
+          fly 24s 12s linear infinite;
+        -o-animation:
+          flap 0.2s steps(4) infinite alternate-reverse,
+          fly 24s 12s linear infinite;
+        animation:
+          flap 0.2s steps(4) infinite alternate-reverse,
+          fly 24s 12s linear infinite;
+      }
+      .t8 {
+        -webkit-animation:
+          flap 0.2s steps(4) infinite alternate,
+          fly 24s 16s linear infinite;
+        -moz-animation:
+          flap 0.2s steps(4) infinite alternate,
+          fly 24s 16s linear infinite;
+        -ms-animation:
+          flap 0.2s steps(4) infinite alternate,
+          fly 24s 16s linear infinite;
+        -o-animation:
+          flap 0.2s steps(4) infinite alternate,
+          fly 24s 16s linear infinite;
+        animation:
+          flap 0.2s steps(4) infinite alternate,
+          fly 24s 16s linear infinite;
+      }
+      .t9 {
+        -webkit-animation:
+          flap 0.2s steps(4) infinite alternate-reverse,
+          fly 24s 20s linear infinite;
+        -moz-animation:
+          flap 0.2s steps(4) infinite alternate-reverse,
+          fly 24s 20s linear infinite;
+        -ms-animation:
+          flap 0.2s steps(4) infinite alternate-reverse,
+          fly 24s 20s linear infinite;
+        -o-animation:
+          flap 0.2s steps(4) infinite alternate-reverse,
+          fly 24s 20s linear infinite;
+        animation:
+          flap 0.2s steps(4) infinite alternate-reverse,
+          fly 24s 20s linear infinite;
+      }
+      /**
+     * Toast Animations
+     *
+     * There are several kinds of toaster animations, marked as ts1, ts2, & ts3.
+     *
+     * Tst1 is fast
+     * Tst2 is mid speed
+     * Tst3 is the common speed
+     * Tst4 is a delayed batch of toast going at the common speed
+     */
+      .tst1 {
+        -webkit-animation: fly 10s linear infinite;
+        -moz-animation: fly 10s linear infinite;
+        -ms-animation: fly 10s linear infinite;
+        -o-animation: fly 10s linear infinite;
+        animation: fly 10s linear infinite;
+      }
+      .tst2 {
+        -webkit-animation: fly 16s linear infinite;
+        -moz-animation: fly 16s linear infinite;
+        -ms-animation: fly 16s linear infinite;
+        -o-animation: fly 16s linear infinite;
+        animation: fly 16s linear infinite;
+      }
+      .tst3 {
+        -webkit-animation: fly 24s linear infinite;
+        -moz-animation: fly 24s linear infinite;
+        -ms-animation: fly 24s linear infinite;
+        -o-animation: fly 24s linear infinite;
+        animation: fly 24s linear infinite;
+      }
+      .tst4 {
+        -webkit-animation: fly 24s 12s linear infinite;
+        -moz-animation: fly 24s 12s linear infinite;
+        -ms-animation: fly 24s 12s linear infinite;
+        -o-animation: fly 24s 12s linear infinite;
+        animation: fly 24s 12s linear infinite;
+      }
 
-     <!-- Site Metas -->
-    <title>💝 Ivča & Petr</title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="author" content="">
+      /**
+     * Starting positions of objects (both toast & toasters).
+     *  - There is a different position for each object to prevent overlapping.
+     *  - We use percentages in order to accommodate for all window dimensions.
+     *  - Use -6% as the smallest amount for remaining off-screen.
+     *  - Organized into reverse "L" shaped batches to keep a constant flow.
+     */
+      /* Batch 1 (-10% to -20%) */
+      /* Top edge, from right to left */
+      .p6 {
+        right: -2%;
+        top: -17%;
+      }
+      .p7 {
+        right: 10%;
+        top: -19%;
+      }
+      .p8 {
+        right: 20%;
+        top: -18%;
+      }
+      .p9 {
+        right: 30%;
+        top: -20%;
+      }
+      .p10 {
+        right: 40%;
+        top: -21%;
+      }
+      .p11 {
+        right: 50%;
+        top: -18%;
+      }
+      .p12 {
+        right: 60%;
+        top: -20%;
+      }
+      /* Right side, from top to bottom */
+      .p13 {
+        right: -17%;
+        top: 10%;
+      }
+      .p14 {
+        right: -19%;
+        top: 20%;
+      }
+      .p15 {
+        right: -21%;
+        top: 30%;
+      }
+      .p16 {
+        right: -23%;
+        top: 50%;
+      }
+      .p17 {
+        right: -25%;
+        top: 70%;
+      }
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-	<!-- Site CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Responsive CSS -->
-    <link rel="stylesheet" href="css/responsive.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/custom.css">
+      /* Batch 2 (-20% to -40%) */
+      /* Top edge, from right to left */
+      .p18 {
+        right: 0%;
+        top: -26%;
+      }
+      .p19 {
+        right: 10%;
+        top: -20%;
+      }
+      .p20 {
+        right: 20%;
+        top: -36%;
+      }
+      .p21 {
+        right: 30%;
+        top: -24%;
+      }
+      .p22 {
+        right: 40%;
+        top: -33%;
+      }
+      .p23 {
+        right: 60%;
+        top: -40%;
+      }
+      /* Right side, from top to bottom */
+      .p24 {
+        right: -26%;
+        top: 10%;
+      }
+      .p25 {
+        right: -36%;
+        top: 30%;
+      }
+      .p26 {
+        right: -29%;
+        top: 50%;
+      }
 
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+      /* Batch 3 (-40% to -60%)*/
+      /* Top edge, from right to left */
+      .p27 {
+        right: 0;
+        top: -46%;
+      }
+      .p28 {
+        right: 10%;
+        top: -56%;
+      }
+      .p29 {
+        right: 20%;
+        top: -49%;
+      }
+      .p30 {
+        right: 30%;
+        top: -60%;
+      }
+      /* Right side, from top to bottom */
+      .p31 {
+        right: -46%;
+        top: 10%;
+      }
+      .p32 {
+        right: -56%;
+        top: 20%;
+      }
+      .p33 {
+        right: -49%;
+        top: 30%;
+      }
 
-</head>
-<body id="home" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
-	<!-- Start header -->
+      /* Flapping animation */
+      @-webkit-keyframes flap {
+        from {
+          background-position: 0px;
+        }
+        to {
+          background-position: -256px;
+        }
+      }
+      @-moz-keyframes flap {
+        from {
+          background-position: 0px;
+        }
+        to {
+          background-position: -256px;
+        }
+      }
+      @-o-keyframes flap {
+        from {
+          background-position: 0px;
+        }
+        to {
+          background-position: -256px;
+        }
+      }
+      @keyframes flap {
+        from {
+          background-position: 0px;
+        }
+        to {
+          background-position: -256px;
+        }
+      }
 
-	<!-- End header -->
+      /* Gliding animation using translate */
+      /* Moving 1600px, to accomodate for large screens */
+      @-webkit-keyframes fly {
+        from {
+          -webkit-transform: translate(0, 0);
+          -moz-transform: translate(0, 0);
+          -o-transform: translate(0, 0);
+          -ms-transform: translate(0, 0);
+          transform: translate(0, 0);
+        }
+        to {
+          -webkit-transform: translate(-1600px, 1600px);
+          -moz-transform: translate(-1600px, 1600px);
+          -o-transform: translate(-1600px, 1600px);
+          -ms-transform: translate(-1600px, 1600px);
+          transform: translate(-1600px, 1600px);
+        }
+      }
+      @-moz-keyframes fly {
+        from {
+          -webkit-transform: translate(0, 0);
+          -moz-transform: translate(0, 0);
+          -o-transform: translate(0, 0);
+          -ms-transform: translate(0, 0);
+          transform: translate(0, 0);
+        }
+        to {
+          -webkit-transform: translate(-1600px, 1600px);
+          -moz-transform: translate(-1600px, 1600px);
+          -o-transform: translate(-1600px, 1600px);
+          -ms-transform: translate(-1600px, 1600px);
+          transform: translate(-1600px, 1600px);
+        }
+      }
+      @-o-keyframes fly {
+        from {
+          -webkit-transform: translate(0, 0);
+          -moz-transform: translate(0, 0);
+          -o-transform: translate(0, 0);
+          -ms-transform: translate(0, 0);
+          transform: translate(0, 0);
+        }
+        to {
+          -webkit-transform: translate(-1600px, 1600px);
+          -moz-transform: translate(-1600px, 1600px);
+          -o-transform: translate(-1600px, 1600px);
+          -ms-transform: translate(-1600px, 1600px);
+          transform: translate(-1600px, 1600px);
+        }
+      }
+      @keyframes fly {
+        from {
+          -webkit-transform: translate(0, 0);
+          -moz-transform: translate(0, 0);
+          -o-transform: translate(0, 0);
+          -ms-transform: translate(0, 0);
+          transform: translate(0, 0);
+        }
+        to {
+          -webkit-transform: translate(-1600px, 1600px);
+          -moz-transform: translate(-1600px, 1600px);
+          -o-transform: translate(-1600px, 1600px);
+          -ms-transform: translate(-1600px, 1600px);
+          transform: translate(-1600px, 1600px);
+        }
+      }
 
-	<!-- Start Banner -->
-	<div class="ulockd-home-slider">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-12 col-lg-12 top-image">
-					<div class="lbox-caption">
-						<div class="lbox-details">
-							<h1>Ivča & Peťa</h1>
-							<h2>Bude prdel!</h2>
-							<p><strong>4. června 2022</strong> | Lipník nad Bečvou</p>
-						</div>
-					</div>
-				</div><!-- .pogoSlider -->
-			</div>
-		</div>
-	</div>
-	<!-- End Banner -->
+      .brand {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    z-index: 10;
+    mix-blend-mode: difference;
+  }
+ 
+  .brand .dot { color: #ff6b00; }
+ 
+  .brand .status {
+    display: block;
+    margin-top: 0.4rem;
+    font-size: 0.7rem;
+    color: #888;
+    letter-spacing: 0.2em;
+  }
+ 
+  .brand .company {
+    display: block;
+    margin-top: 0.6rem;
+    font-size: 0.7rem;
+    color: #bbb;
+    letter-spacing: 0.15em;
+    text-transform: none;
+  }
+    </style>
+  </head>
+  <body>
+    <div class="brand">
+      stehlik<span class="dot">.</span>dev
+      <span class="company">Stehlík Dev s.r.o.</span>
+      <!-- <span class="status"
+        >website coming soon<span class="cursor"></span
+      ></span> -->
+    </div>
+    <!-- First group of objects -->
+    <div class="toaster t1 p6"></div>
+    <div class="toaster t3 p7"></div>
+    <div class="toast tst1 p8"></div>
+    <div class="toaster t3 p9"></div>
+    <div class="toaster t1 p11"></div>
+    <div class="toaster t3 p12"></div>
+    <div class="toaster t2 p13"></div>
+    <div class="toast tst3 p14"></div>
+    <div class="toast tst2 p16"></div>
+    <div class="toaster t1 p17"></div>
+    <div class="toast tst2 p19"></div>
+    <div class="toast tst3 p20"></div>
+    <div class="toaster t2 p21"></div>
+    <div class="toast tst1 p24"></div>
+    <div class="toaster t1 p22"></div>
+    <div class="toast tst2 p26"></div>
+    <div class="toaster t1 p28"></div>
+    <div class="toast tst2 p30"></div>
+    <div class="toaster t2 p31"></div>
+    <div class="toaster t1 p32"></div>
+    <div class="toast tst3 p33"></div>
 
-	<!-- Start About us -->
-	<div id="about" class="about-box">
-		<div class="about-a1">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12 col-md-12 col-sm-12">
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="title-box">
-									<h2>Kde</h2>
-								</div>
-							</div>
-						</div>
-						<div class="row align-items-center about-main-info">
-							<div class="col-lg-6 col-md-6 col-sm-12">
-								<h3>Obřad</h3>
-								<p>Zámecká zahrada Lipník nad Bečvou</p>
-								<iframe style="border:none; width: 100%;" src="https://frame.mapy.cz/s/nacolapoco" height="350" frameborder="0"></iframe>
+    <!-- wave 1 of (fast delayed) objects -->
+    <div class="toaster t4 p27"></div>
+    <div class="toaster t4 p10"></div>
+    <div class="toaster t4 p25"></div>
+    <div class="toaster t4 p29"></div>
 
-							</div>
+    <!-- wave 2 of (delayed) objects -->
+    <div class="toaster t5 p15"></div>
+    <div class="toaster t5 p18"></div>
+    <div class="toaster t5 p22"></div>
 
-							<div class="col-lg-6 col-md-6 col-sm-12">
-								<h3>Hostina</h3>
-								<p>Kulturní dům Echo Lipník nad Bečvou</p>
-								<iframe style="border:none; width: 100%;" src="https://frame.mapy.cz/s/peparekeka" height="350" frameborder="0"></iframe>
+    <!-- wave 3 of (delayed) objects -->
+    <div class="toaster t6 p6"></div>
+    <div class="toaster t6 p11"></div>
+    <div class="toaster t6 p15"></div>
+    <div class="toaster t6 p19"></div>
+    <div class="toaster t6 p23"></div>
 
-							</div>
+    <!-- wave 5 of (delayed) objects -->
+    <div class="toast tst4 p10"></div>
+    <div class="toast tst4 p23"></div>
+    <div class="toast tst4 p15"></div>
+    <div class="toaster t7 p7"></div>
+    <div class="toaster t7 p12"></div>
+    <div class="toaster t7 p16"></div>
+    <div class="toaster t7 p20"></div>
+    <div class="toaster t7 p24"></div>
 
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- End About us -->
+    <!-- wave 6 of (delayed) objects -->
+    <div class="toaster t8 p8"></div>
+    <div class="toaster t8 p13"></div>
+    <div class="toaster t8 p17"></div>
+    <div class="toaster t8 p25"></div>
 
-	<!-- Start Story -->
-	<div id="story" class="story-box main-timeline-box">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="title-box">
-						<h2>Program</h2>
-						<p>Co, kdy, kde a jak. Změna programu vyhrazena.</p>
-					</div>
-				</div>
-			</div>
-			<div class="row timeline-element separline">
-				<div class="timeline-date-panel col-xs-12 col-md-6  align-left">
-                    <div class="time-line-date-content">
-                        <p class="mbr-timeline-date mbr-fonts-style display-font">
-                            11:30
-                        </p>
-                    </div>
-				</div>
-				<span class="iconBackground"></span>
-				<div class="col-xs-12 col-md-6 align-left">
-					<div class="timeline-text-content">
-						<h4 class="mbr-timeline-title pb-3 mbr-fonts-style display-font">Setkání na místě obřadu</h4>
-						<p class="mbr-timeline-text mbr-fonts-style display-7">
-							Obřad se koná v zámecké zahradě v Lipníku nad Bečvou na čerstvém vzduchu. <a href="https://mapy.cz/s/puzorakugu" target="_blank">Parkovat můžete za rohem.</a>
-						</p>
-					 </div>
-				</div>
-			</div>
-
-			<!--div class="row timeline-element reverse separline">
-				<div class="timeline-date-panel col-xs-12 col-md-6  align-left">
-                    <div class="time-line-date-content">
-                        <p class="mbr-timeline-date mbr-fonts-style display-font">
-                            Občerstvení před obřadem
-                        </p>
-                    </div>
-				</div>
-				<span class="iconBackground"></span>
-				<div class="col-xs-12 col-md-6 align-right">
-					<div class="timeline-text-content">
-						<h4 class="mbr-timeline-title pb-3 mbr-fonts-style display-font"></h4>
-						<p class="mbr-timeline-text mbr-fonts-style display-7">
-						   Před obřadem vás nenecháme na suchu. Na místě bude drobné občerstvení a pití všech barev a chutí.
-						</p>
-					 </div>
-				</div>
-			</div-->
-
-			<div class="row timeline-element separline">
-				<div class="timeline-date-panel col-xs-12 col-md-6  align-left">
-                    <div class="time-line-date-content">
-                        <p class="mbr-timeline-date mbr-fonts-style display-font">
-                            12:00
-                        </p>
-                    </div>
-				</div>
-				<span class="iconBackground"></span>
-				<div class="col-xs-12 col-md-6 align-left">
-					<div class="timeline-text-content">
-						<h4 class="mbr-timeline-title pb-3 mbr-fonts-style display-font">Obřad</h4>
-						<p class="mbr-timeline-text mbr-fonts-style display-7">
-						   Pokud bude pršet, nezmokneme. Obřad bude za dobrého počasí v zahradě. V případě deště v konírně.
-						</p>
-					 </div>
-				</div>
-			</div>
-
-			<div class="row timeline-element separline">
-				<div class="timeline-date-panel col-xs-12 col-md-6  align-left">
-                    <div class="time-line-date-content">
-                        <p class="mbr-timeline-date mbr-fonts-style display-font">
-                            13:00
-                        </p>
-                    </div>
-				</div>
-				<span class="iconBackground"></span>
-				<div class="col-xs-12 col-md-6 align-left">
-					<div class="timeline-text-content">
-						<h4 class="mbr-timeline-title pb-3 mbr-fonts-style display-font">Focení s novomanželi</h4>
-						<p class="mbr-timeline-text mbr-fonts-style display-7">
-						   Dokud jsme všichni krásní a fajnoví, tak se blýskneme.
-						</p>
-					 </div>
-				</div>
-			</div>
-
-			<div class="row timeline-element separline">
-				<div class="timeline-date-panel col-xs-12 col-md-6  align-left">
-                    <div class="time-line-date-content">
-                        <p class="mbr-timeline-date mbr-fonts-style display-font">
-							14:00
-                        </p>
-                    </div>
-				</div>
-				<span class="iconBackground"></span>
-				<div class="col-xs-12 col-md-6 align-left">
-					<div class="timeline-text-content">
-						<h4 class="mbr-timeline-title pb-3 mbr-fonts-style display-font">Svíčková!</h4>
-						<p class="mbr-timeline-text mbr-fonts-style display-7">
-						   Co by to bylo za svatbu bez svíčkové? Hostina a celý odpolední program se koná v kulturním domě Echo asi 500 m od místa obřadu.
-						</p>
-					 </div>
-				</div>
-			</div>
-
-			<div class="row timeline-element reverse separline">
-				<div class="timeline-date-panel col-xs-12 col-md-6  align-left">
-                    <div class="time-line-date-content">
-                        <p class="mbr-timeline-date mbr-fonts-style display-font">
-                            Odjezd novomanželů na focení
-                        </p>
-                    </div>
-				</div>
-				<span class="iconBackground"></span>
-				<div class="col-xs-12 col-md-6 align-right">
-					<div class="timeline-text-content">
-						<h4 class="mbr-timeline-title pb-3 mbr-fonts-style display-font"></h4>
-						<p class="mbr-timeline-text mbr-fonts-style display-7">
-						   Svíčková snad neudělá paseku a fotky nebudeme muset retušovat od fleků. Novomanželé se po obědě nenápadně odeberou k focení, takže je nemusíte ani hledat.
-						</p>
-					 </div>
-				</div>
-			</div>
-
-			<div class="row timeline-element separline">
-				<div class="timeline-date-panel col-xs-12 col-md-6  align-left">
-                    <div class="time-line-date-content">
-                        <p class="mbr-timeline-date mbr-fonts-style display-font">
-							16:00
-                        </p>
-                    </div>
-				</div>
-				<span class="iconBackground"></span>
-				<div class="col-xs-12 col-md-6 align-left">
-					<div class="timeline-text-content">
-						<h4 class="mbr-timeline-title pb-3 mbr-fonts-style display-font">Dortík</h4>
-						<p class="mbr-timeline-text mbr-fonts-style display-7">
-						   Novomanželé Stehlíkovi jsou na sladké, proto i dort má své místo v programu.
-						</p>
-					 </div>
-				</div>
-			</div>
-
-			<div class="row timeline-element reverse separline">
-				<div class="timeline-date-panel col-xs-12 col-md-6  align-left">
-                    <div class="time-line-date-content">
-                        <p class="mbr-timeline-date mbr-fonts-style display-font">
-							Volná zábava
-                        </p>
-                    </div>
-				</div>
-				<span class="iconBackground"></span>
-				<div class="col-xs-12 col-md-6 align-right">
-					<div class="timeline-text-content">
-						<h4 class="mbr-timeline-title pb-3 mbr-fonts-style display-font"></h4>
-						<p class="mbr-timeline-text mbr-fonts-style display-7">
-							Na místě bude fotokoutek, různé hry pro děti a hlavně lidi. Seznamujte se, pokecejte, <strong>vyfoťte se</strong> a sem tam uvidíte i novomanžele jak brousí kolem sweet baru a rautu.
-							Proto pokud je uvidíte se žvancem v puse, nerušte je. Jsou pak agresivní.
-						</p>
-						<img src="images/rizecky.jpg" class="img-fluid">
-					 </div>
-				</div>
-			</div>
-
-			<div class="row timeline-element separline">
-				<div class="timeline-date-panel col-xs-12 col-md-6  align-left">
-                    <div class="time-line-date-content">
-                        <p class="mbr-timeline-date mbr-fonts-style display-font">
-							18:00
-                        </p>
-                    </div>
-				</div>
-				<span class="iconBackground"></span>
-				<div class="col-xs-12 col-md-6 align-left">
-					<div class="timeline-text-content">
-						<h4 class="mbr-timeline-title pb-3 mbr-fonts-style display-font">Tanec novomanželů</h4>
-						<p class="mbr-timeline-text mbr-fonts-style display-7">
-						   Polka, valčík nebo charleston - to jsou pojmy co naše nohy neznají.
-						</p>
-					 </div>
-				</div>
-			</div>
-
-			<div class="row timeline-element reverse separline">
-				<div class="timeline-date-panel col-xs-12 col-md-6  align-left">
-                    <div class="time-line-date-content">
-                        <p class="mbr-timeline-date mbr-fonts-style display-font">
-                            Svobodní pozor!
-                        </p>
-                    </div>
-				</div>
-				<span class="iconBackground"></span>
-				<div class="col-xs-12 col-md-6 align-right">
-					<div class="timeline-text-content">
-						<h4 class="mbr-timeline-title pb-3 mbr-fonts-style display-font"></h4>
-						<p class="mbr-timeline-text mbr-fonts-style display-7">
-						   Hod kyticí a podvazkem proběhnou v podvečer bez přesného času. Kdo hodí dál? Ženich nebo nevěsta?
-						</p>
-					 </div>
-				</div>
-			</div>
-
-			<div class="row timeline-element separline">
-				<div class="timeline-date-panel col-xs-12 col-md-6  align-left">
-                    <div class="time-line-date-content">
-                        <p class="mbr-timeline-date mbr-fonts-style display-font">
-							20:00
-                        </p>
-                    </div>
-				</div>
-				<span class="iconBackground"></span>
-				<div class="col-xs-12 col-md-6 align-left">
-					<div class="timeline-text-content">
-						<h4 class="mbr-timeline-title pb-3 mbr-fonts-style display-font">Párty</h4>
-						<p class="mbr-timeline-text mbr-fonts-style display-7">
-						   Zde končí serióznost a začíná prdel.
-						</p>
-					 </div>
-				</div>
-			</div>
-
-			<div class="row timeline-element reverse separline">
-				<div class="timeline-date-panel col-xs-12 col-md-6  align-left">
-                    <div class="time-line-date-content">
-                        <p class="mbr-timeline-date mbr-fonts-style display-font">
-                            Aktivity večer
-                        </p>
-                    </div>
-				</div>
-				<span class="iconBackground"></span>
-				<div class="col-xs-12 col-md-6 align-right">
-					<div class="timeline-text-content">
-						<h4 class="mbr-timeline-title pb-3 mbr-fonts-style display-font"></h4>
-						<p class="mbr-timeline-text mbr-fonts-style display-7">
-						   Novomanželský kvíz, hod podvazkem a další srandičky budou svévolně uskutečněny během večera. Nečekejte proto na přesný čas.
-						</p>
-					 </div>
-				</div>
-			</div>
-
-			<div class="row timeline-element separline">
-				<div class="timeline-date-panel col-xs-12 col-md-6  align-left">
-                    <div class="time-line-date-content">
-                        <p class="mbr-timeline-date mbr-fonts-style display-font">
-							??:??
-                        </p>
-                    </div>
-				</div>
-				<span class="iconBackground"></span>
-				<div class="col-xs-12 col-md-6 align-left">
-					<div class="timeline-text-content">
-						<h4 class="mbr-timeline-title pb-3 mbr-fonts-style display-font">Odjezd</h4>
-						<p class="mbr-timeline-text mbr-fonts-style display-7">
-						   Pokud už budete mít veselky dost, stačí si objednat odvoz u svědkyně Lenky či svědka Tomáše nebo prostě odejít (samozřejmě po rozloučení s novomanželi).
-						</p>
-					 </div>
-				</div>
-			</div>
-
-		</div>
-	</div>
-	<!-- End Story -->
-
-	<div id="dary" class="story-box main-timeline-box">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="title-box">
-						<h2>Dary</h2>
-						<p>Prosíme nekupujte žádné zbytečnosti. Byt v Brně máme vybavený a dům ještě nestojí. Oceníme finanční dary v jakékoliv podobě (od peněz v krabici od vína až po bitcoiny).</p>
-						<p>Všechny peníze budou vynaloženy na stavbu domu nebo zaplacení nákladů tohoto úžasného dne, kdy budeme všichni spolu.</p>
-					</div>
-
-					<div class="dvur-img">
-						<img src="images/dvur.jpg" class="img-fluid">
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div id="stehlik" class="story-box main-timeline-box">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 title-box">
-					<h2>Stehlík obecný</h2>
-				</div>
-
-				<div class="col-lg-4">
-					<img src="//upload.wikimedia.org/wikipedia/commons/thumb/f/fd/European_Goldfinch_on_Spear_Thistle.jpg/255px-European_Goldfinch_on_Spear_Thistle.jpg" class="img-fluid">
-				</div>
-				<div class="col-lg-8">
-					<p>Stehlík obecný (Carduelis carduelis) je malý pěvec z čeledi pěnkavovití s rozsáhlým areálem. </p>
-					<p>Stehlík obecný má štíhlé tělo, dlouhá křídla, silný, poměrně dlouhý, hodně špičatý zobák barvy slonoviny až zarůžovělý a hnědé končetiny. Je pestře zbarvený, svrchu béžově, křídla má zčásti černá s bílými skvrnami a jasným žlutým pruhem, zespodu je bílý, hlava má charakteristickou červenou masku, zbytek hlavy je černobílý. </p>
-					<p>Ptáci létají rychlým obratným vlnkovitým letem. Chovají se neposedně, na vrcholcích pcháčů a bodláků stále poposedávají a přeletují z jednoho na druhý; když ztrácejí rovnováhu, třepotají křídly.</p>
-					<p><a href="https://cs.wikipedia.org/wiki/Stehl%C3%ADk_obecn%C3%BD" target="_blank">Wikipedia.org</a> </p>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Start Footer -->
-	<footer class="footer-box">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<p class="footer-company-name">Všechna láska vyhrazena. &copy; 2022</p>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<!-- End Footer -->
-
-	<!-- ALL JS FILES -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-    <!-- ALL PLUGINS -->
-<!--	<script src="js/jquery.magnific-popup.min.js"></script>-->
-<!--    <script src="js/jquery.pogo-slider.min.js"></script>-->
-<!--	<script src="js/slider-index.js"></script>-->
-<!--	<script src="js/smoothscroll.js"></script>-->
-<!--	<script src="js/form-validator.min.js"></script>-->
-<!--    <script src="js/contact-form-script.js"></script>-->
-<!--    <script src="js/custom.js"></script>-->
-</body>
+    <!-- wave 7 of (delayed) objects -->
+    <div class="toaster t9 p14"></div>
+    <div class="toaster t9 p18"></div>
+    <div class="toaster t9 p21"></div>
+    <div class="toaster t9 p26"></div>
+  </body>
 </html>
