@@ -487,15 +487,84 @@
     letter-spacing: 0.15em;
     text-transform: none;
   }
+
+  .info-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 4px;
+    padding: 2.5rem 3rem;
+    max-width: 520px;
+    width: calc(100vw - 4rem);
+    color: #e0e0e0;
+    font-family: 'Courier New', monospace;
+    z-index: 20;
+    backdrop-filter: blur(6px);
+  }
+
+  .info-panel h1 {
+    font-size: 1.25rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin: 0 0 0.3rem 0;
+    color: #fff;
+  }
+
+  .info-panel .tagline {
+    font-size: 0.78rem;
+    color: #888;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin: 0 0 1.8rem 0;
+  }
+
+  .info-panel p {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: #bbb;
+    margin: 0 0 1.2rem 0;
+  }
+
+  .info-panel .meta {
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.72rem;
+    color: #666;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .info-panel .meta a {
+    color: #ff6b00;
+    text-decoration: none;
+  }
+
+  .info-panel .meta a:hover {
+    text-decoration: underline;
+  }
     </style>
   </head>
   <body>
     <div class="brand">
       stehlik<span class="dot">.</span>dev
       <span class="company">Stehlík Dev s.r.o.</span>
-      <!-- <span class="status"
-        >website coming soon<span class="cursor"></span
-      ></span> -->
+    </div>
+
+    <div class="info-panel">
+      <h1>Stehlík Dev <span style="color:#ff6b00">s.r.o.</span></h1>
+      <p class="tagline">Software Development &amp; Consulting</p>
+      <p>
+        Stehlík Dev s.r.o. is a Czech-registered software development company
+        building mobile and web applications for clients across Europe.
+      </p>
+      <div class="meta">
+        Founded 2026 &nbsp;·&nbsp; Prague, Czech Republic<br/>
+        IČO: 29584094
+      </div>
     </div>
     <!-- First group of objects -->
     <div class="toaster t1 p6"></div>
