@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Contact — Stehlík Dev s.r.o.</title>
+    <meta name="description" content="Contact Stehlík Dev s.r.o." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../img/favicon.png" />
+    <style>
+      *, *:before, *:after { box-sizing: border-box; }
+
+      body {
+        background: #111;
+        color: #ccc;
+        font-family: 'Courier New', monospace;
+        margin: 0;
+        padding: 3rem 1.5rem 6rem;
+        line-height: 1.7;
+      }
+
+      .wrap {
+        max-width: 520px;
+        margin: 0 auto;
+      }
+
+      .back {
+        display: inline-block;
+        font-size: 0.75rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #ff6b00;
+        text-decoration: none;
+        margin-bottom: 2.5rem;
+      }
+
+      .back:hover { text-decoration: underline; }
+
+      h1 {
+        font-size: 1.25rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #fff;
+        margin: 0 0 0.3rem;
+      }
+
+      .sub {
+        font-size: 0.72rem;
+        color: #555;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        margin-bottom: 2.5rem;
+      }
+
+      label {
+        display: block;
+        font-size: 0.72rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #666;
+        margin-bottom: 0.4rem;
+      }
+
+      input, textarea {
+        display: block;
+        width: 100%;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 3px;
+        color: #ddd;
+        font-family: 'Courier New', monospace;
+        font-size: 0.85rem;
+        padding: 0.7rem 0.9rem;
+        margin-bottom: 1.4rem;
+        outline: none;
+        transition: border-color 0.15s;
+      }
+
+      input:focus, textarea:focus {
+        border-color: rgba(255, 107, 0, 0.5);
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      button {
+        background: transparent;
+        border: 1px solid #ff6b00;
+        color: #ff6b00;
+        font-family: 'Courier New', monospace;
+        font-size: 0.78rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        padding: 0.65rem 2rem;
+        cursor: pointer;
+        border-radius: 3px;
+        transition: background 0.15s, color 0.15s;
+      }
+
+      button:hover {
+        background: #ff6b00;
+        color: #111;
+      }
+
+      .success {
+        display: none;
+        margin-top: 1.5rem;
+        font-size: 0.8rem;
+        color: #888;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .footer {
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(255,255,255,0.08);
+        font-size: 0.72rem;
+        color: #555;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <a class="back" href="/">&larr; Back</a>
+
+      <h1>Contact</h1>
+      <p class="sub">Stehlík Dev s.r.o.</p>
+
+      <form id="contact-form" onsubmit="handleSubmit(event)">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" autocomplete="name" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" autocomplete="email" required />
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required></textarea>
+
+        <button type="submit">Send Message</button>
+      </form>
+
+      <p class="success" id="success-msg">Message received. We'll be in touch.</p>
+
+      <div class="footer">
+        Stehlík Dev s.r.o. &nbsp;·&nbsp; Czech Republic &nbsp;·&nbsp; IČO: 29584094
+      </div>
+    </div>
+
+    <script>
+      function handleSubmit(e) {
+        e.preventDefault();
+        document.getElementById('contact-form').style.display = 'none';
+        document.getElementById('success-msg').style.display = 'block';
+      }
+    </script>
+  </body>
+</html>
